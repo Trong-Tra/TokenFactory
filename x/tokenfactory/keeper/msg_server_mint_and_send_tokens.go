@@ -39,7 +39,7 @@ func (k msgServer) MintAndSendTokens(goCtx context.Context, msg *types.MsgMintAn
 
 	var mintCoins sdk.Coins
 
-	mintCoins = mintCoins.Add(sdk.NewCoin(msg.Denom, sdk.NewInt(int64(msg.Amount))))
+	mintCoins = mintCoins.Add(sdk.NewInt64Coin(msg.Denom, int64(msg.Amount)))
 	if err := k.bankKeeper.MintCoins(ctx, types.ModuleName, mintCoins); err != nil {
 		return nil, err
 	}
